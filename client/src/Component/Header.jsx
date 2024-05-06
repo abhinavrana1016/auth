@@ -14,7 +14,7 @@ const Header = () => {
                     <li>Home</li>
                     </Link>
                     <Link to='/about'>
-                    <li>About Us</li>
+                    <li>About Udsds</li>
                     </Link>
                     <Link to='/sign-in'>
                     <li>Sign In</li>
