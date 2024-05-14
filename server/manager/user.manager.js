@@ -1,9 +1,8 @@
 const userModel = require("../models/user.model");
 var bcrypt = require("bcryptjs");
-const { Success, Error, success } = require('../util/response.util');
+const { Success, Error, success,error } = require('../util/response.util');
 const registerUser = async (body) => {
   try {
-   console.log(body)
     var salt = bcrypt.genSaltSync(10);
     var hashPassword = bcrypt.hashSync(body?.password, salt);
     // check for duplicate email,mobile no, userName
@@ -11,11 +10,11 @@ const registerUser = async (body) => {
     const mobileExist = await userModel.exists({ mobileno: body?.mobileno });
     const userName = await userModel.exists({ userName: body?.userName });
     if (emailExist) {
-      return Error({ message: "email already exist" });
+      return success({ message: "email already exist" ,code:501 });
     }
     else if (mobileExist) {
 
-      return Error({ message: "mobile no already exist" });
+      return error({ message: "mobile no already exist" });
     }
     else if (userName) {
       return Error({ message: "user Name already exist" });

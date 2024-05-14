@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
+import axios from "axios"
 const SignUp = () => {
   const {
     register,
@@ -12,10 +13,20 @@ const SignUp = () => {
   } = useForm();
   const [value, onChange] = useState(new Date());
   const registeruser = async (data) => {
-    console.log(data);
+   try {
+    console.log(data)
+    const registerUser = await axios.post(
+      "/api/users/register",
+      {
+         ...data
+      })
+      console.log(registerUser)
+   } catch (error) {
+    console.log(error)
+   }
   };
   const checkPassword = (confirmPassword) => {
-    console.log("dklj", watch("password"), confirmPassword);
+   
     if (watch("password").toLowerCase() != confirmPassword.toLowerCase()) {
       setError("confirmPassword", {
         message: "Password doesnot match",
