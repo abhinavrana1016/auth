@@ -14,7 +14,6 @@ const SignUp = () => {
   const [value, onChange] = useState(new Date());
   const registeruser = async (data) => {
    try {
-    console.log(data)
     const registerUser = await axios.post(
       "/api/users/register",
       {
