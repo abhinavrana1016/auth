@@ -5,4 +5,9 @@ const registerUser = async (request, response) => {
     .then((result) => response.status(result.code).send(result.data))
     .catch((error) => response.status(500).send(error.message));
 };
-module.exports = { registerUser };
+const loginUser =async (request, response)=>{
+  userManager.loginUser(request.body)
+  .then((result) => response.status(result.code).send(result.data))
+  .catch((error) => response.status(500).send(error.message));
+}
+module.exports = { registerUser,loginUser };
